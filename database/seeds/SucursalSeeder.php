@@ -14,49 +14,49 @@ class SucursalSeeder extends Seeder
     {
         DB::table($this->table)->delete();
         DB::table($this->table)->insert([
-            'nombre' => 'Teckart',
-            'direccion' => 'Songalez Oriente',
-            'telefono' => '9784888',
+            'nombre' => 'Abarrotes El Mike',
+            'direccion' => 'Villas de nuesta señora de la asunción',
+            'telefono' => '4494064398',
             'created_at' => '2019-05-08',
             'updated_at' => '2019-05-08',
         ]);
         
         DB::table($this->table)->insert([
-            'nombre' => 'Raime',
-            'direccion' => 'costas del Humo',
-            'telefono' => '11000',
+            'nombre' => 'Minisuper La joya',
+            'direccion' => 'Santa anita',
+            'telefono' => '4494067396',
             'created_at' => '2019-05-08',
             'updated_at' => '2019-05-08',
         ]);
       
         DB::table($this->table)->insert([
-            'nombre' => 'Velstad',
-            'direccion' => 'cripta',
-            'telefono' => '106065',
+            'nombre' => 'Minisuper El vago',
+            'direccion' => 'Luis hidalgo monroy',
+            'telefono' => '4494067393',
             'created_at' => '2019-05-08',
             'updated_at' => '2019-05-08',
         ]);
     
         DB::table($this->table)->insert([
-            'nombre' => 'Industrias Stark',
-            'direccion' => 'edificios baxter',
-            'telefono' => '91834095',
+            'nombre' => 'Abarrotes El tony',
+            'direccion' => 'Pilar blanco',
+            'telefono' => '4497067396',
             'created_at' => '2019-05-08',
             'updated_at' => '2019-05-08',
         ]);
         
         DB::table($this->table)->insert([
-            'nombre' => 'Gigante',
-            'direccion' => 'jotunheim',
-            'telefono' => '106065',
+            'nombre' => 'Abarrotes El marco',
+            'direccion' => 'La soledad',
+            'telefono' => '4494067343',
             'created_at' => '2019-05-08',
             'updated_at' => '2019-05-08',
         ]);
   
         DB::table($this->table)->insert([
-            'nombre' => 'WarGod',
-            'direccion' => 'sparta',
-            'telefono' => '913455',
+            'nombre' => 'Minisuper La niña',
+            'direccion' => 'Juan montoro',
+            'telefono' => '4496087394',
             'created_at' => '2019-05-08',
             'updated_at' => '2019-05-08',
         ]);

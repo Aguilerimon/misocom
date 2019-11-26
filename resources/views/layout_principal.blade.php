@@ -88,35 +88,11 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="apartadoMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apartados</a>
-                <div class="dropdown-menu" aria-labelledby="apartadoMenu">
-                    <a class="dropdown-item" href="{{asset('apartados/')}}">Listar</a>
-                    <a class="dropdown-item" href="{{asset('apartadosNuevo')}}">Nuevo</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="clienteMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
                 <div class="dropdown-menu" aria-labelledby="apartadoMenu">
                     <a class="dropdown-item" href="{{asset('clientes/')}}">Listar</a>
                     <a class="dropdown-item" href="{{asset('clientesNuevo/')}}">Nuevo</a>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="apartadoMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ventas</a>
-                <div class="dropdown-menu" aria-labelledby="ventasMenu">
-                    <a class="dropdown-item" href="{{asset('ventas/')}}">Listar</a>
-                    <a class="dropdown-item" href="{{asset('ventasNuevo')}}">Nuevo</a>
-
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="aparceMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aparece</a>
-                <div class="dropdown-menu" aria-labelledby="apareceMenu">
-                    <a class="dropdown-item" href="{{asset('aparece/')}}">Listar</a>
-                    <a class="dropdown-item" href="{{asset('apareceNuevo')}}">Nuevo</a>
-
-                </div>
-            </li>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="aparceMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sucursal</a>
