@@ -24,6 +24,7 @@
             <th scope="col">Costo</th>
             <th scope="col">Proveedor</th>
             <th scope="col">Categoría</th>
+            <th scope="col">Sucursal</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
@@ -43,6 +44,7 @@
                 <td>{{$producto->costo}}</td>
                 <td>{{$producto->proveedor->nombre}}</td>
                 <td>{{$producto->categoria->nombre}}</td>
+                <td>{{$producto->sucursal->nombre}}</td>
                 <td>
                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar">
                         <a href="productosEditar/{{$producto->id}}">

@@ -75,6 +75,23 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="sucursal">Sucursal</label>
+            <select class="form-control" id="sucursal" name="sucursal" >
+                <option value="">-------------</option>
+                @foreach($sucursales as $sucursal)
+                    @if(isset($producto))
+                        @if($producto->sucursal_id == $sucursal->id )
+                            <option selected value="{{$sucursal->id}}" >{{$sucursal->nombre}}</option>
+                        @else
+                            <option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
+                        @endif
+                    @else
+                        <option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label class="col-md-4 control-label">Imagen</label>
             <div class="col-md-6">
                 @if(isset($producto) && file_exists(public_path('img/productos/'.$producto->id.'.jpg')))
@@ -151,6 +168,7 @@
             form_data.append('costo',  $('#costo').val());
             form_data.append('proveedor',  $('#proveedor').val());
             form_data.append('categoria',  $('#categoria').val());
+            form_data.append('sucursal',  $('#sucursal').val());
 
             var form = $('#productoForm');
 

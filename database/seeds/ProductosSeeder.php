@@ -20,6 +20,7 @@ class ProductosSeeder extends Seeder
             'costo' => 9.50,
             'proveedor_id' => App\Proveedor::all()->random()->id,
             'categoria_id' => App\Categoria::all()->random()->id,
+            'sucursal_id' => App\Sucursal::all()->random()->id,
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);
@@ -31,6 +32,7 @@ class ProductosSeeder extends Seeder
             'costo' => 50.50,
             'proveedor_id' => App\Proveedor::all()->random()->id,
             'categoria_id' => App\Categoria::all()->random()->id,
+            'sucursal_id' => App\Sucursal::all()->random()->id,
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);
@@ -42,6 +44,7 @@ class ProductosSeeder extends Seeder
             'costo' => 50.50,
             'proveedor_id' => App\Proveedor::all()->random()->id,
             'categoria_id' => App\Categoria::all()->random()->id,
+            'sucursal_id' => App\Sucursal::all()->random()->id,
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);

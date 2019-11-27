@@ -15,6 +15,9 @@ class CreateForeignKeys extends Migration
 
             $table->foreign('categoria_id')->references('id')
                 ->on('categorias')->onDelete('cascade');
+
+            $table->foreign('sucursal_id')->references('id')
+                ->on('sucursal')->onDelete('cascade');            
         });
 
         // colocar aquí las nuevas llaves foraneas
@@ -25,6 +28,7 @@ class CreateForeignKeys extends Migration
         Schema::table('productos', function (Blueprint $table){
             $table->dropForeign('productos_proveedor_id_foreign');
             $table->dropForeign('productos_categoria_id_foreign');
+            $table->dropForeign('productos_sucursal_id_foreign');
         });
     }
 }

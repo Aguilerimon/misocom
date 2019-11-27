@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Producto;
 use App\Proveedor;
 use App\Categoria;
+use App\Sucursal;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -72,12 +73,14 @@ class ProductoController extends Controller {
         $title = "Nuevo Producto";
         $proveedores = Proveedor::all();
         $categorias = Categoria::all();
+        $sucursales = Sucursal::all();
         $producto = null;
         $accion = "nuevo";
         return view('productosForm')
             ->with('title', $title)
             ->with('proveedores', $proveedores)
             ->with('categorias', $categorias)
+            ->with('sucursales', $sucursales)
             ->with('producto', $producto)
             ->with('accion', $accion);
 
@@ -93,6 +96,7 @@ class ProductoController extends Controller {
                 $producto->costo = $request->costo;
                 $producto->proveedor_id = $request->proveedor;
                 $producto->categoria_id = $request->categoria;
+                $producto->sucursal_id = $request->sucursal;
                 if ($producto->save()) {
                     $producto_id = $producto->id;
                     if( $request->hasFile('imagen')) {
@@ -115,6 +119,7 @@ class ProductoController extends Controller {
                     $producto->costo = $request->costo;
                     $producto->proveedor_id = $request->proveedor;
                     $producto->categoria_id = $request->categoria;
+                    $producto->sucursal_id = $request->sucursal;
                     if ($producto->save()) {
                         if( $request->hasFile('imagen')) {
                             $producto_id = $request->id;
@@ -147,10 +152,12 @@ class ProductoController extends Controller {
                     $title = "Editar Producto";
                     $proveedores = Proveedor::all();
                     $categorias = Categoria::all();
+                    $sucursales = Sucursal::all();
                     return view('productosForm')
                         ->with('title', $title)
                         ->with('proveedores', $proveedores)
                         ->with('categorias', $categorias)
+                        ->with('sucursales', $sucursales)
                         ->with('producto', $producto)
                         ->with('accion', $accion);
                 }else{

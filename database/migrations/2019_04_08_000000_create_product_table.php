@@ -17,7 +17,7 @@ class CreateProductTable extends Migration
             $table->float('costo');
             $table->unsignedInteger('proveedor_id');
             $table->unsignedInteger('categoria_id');
-
+            $table->unsignedInteger('sucursal_id');
             $table->timestamps();
         });
     }
