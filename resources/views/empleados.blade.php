@@ -17,13 +17,13 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">#ID</th>
+            <th scope="col">Imágen</th>
             <th scope="col">Nombre </th>
             <th scope="col">Apellido </th>
             <th scope="col">Nombre de usuario </th>
             <th scope="col">Contraseña </th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
-            <th scope="col">Imágen</th>
         </tr>
         </thead>
         <tbody>

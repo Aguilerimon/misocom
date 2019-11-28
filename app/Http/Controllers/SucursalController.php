@@ -14,7 +14,7 @@ class SucursalController extends Controller{
     public function index()
     {
         $sucursal = Sucursal::all();
-        $title = "sucursales ";
+        $title = "Sucursales";
         $numRegistros = $sucursal->count();
         return view('sucursal')
        ->with('sucursal', $sucursal)
@@ -93,14 +93,22 @@ public function buscar($buscar)
     {
         try {
             if($request->accion == 'nuevo') {
-                $sucursal = new Sucursal();
-                $sucursal->nombre = $request->nombre;
-                $sucursal->direccion = $request->direccion;
-                $sucursal->telefono = $request->telefono;
-            
+            $sucursal = new Sucursal();
+            $sucursal->nombre = $request->nombre;
+            $sucursal->direccion = $request->direccion;
+            $sucursal->telefono = $request->telefono;
                 if ($sucursal->save()) {
-                    return response()->json(['mensaje' => 'Sucursal agregada', 'status' => 'ok'], 200);
-                } else {
+                    $sucursal_id = $sucursal->id;
+                    if( $request->hasFile('imagen')) {
+                        $file = $request->file('imagen');
+                        $extension = $file->getClientOriginalExtension();
+                        $fileName = $sucursal_id . '.' . $extension;
+                        $path = public_path('img/sucursales/');
+                        $request->file('imagen')->move($path, $fileName);
+                    }
+                return response()->json(['mensaje' => 'Sucursal agregada', 'status' => 'ok'], 200);
+                } 
+                else {
                     return response()->json(['mensaje' => 'Error al agregar Sucursal', 'status' => 'error'], 400);
                 }
             }else if($request->accion == 'editar'){
@@ -109,6 +117,16 @@ public function buscar($buscar)
                     $sucursal->direccion = $request->direccion;
                     $sucursal->telefono = $request->telefono;
                     if ($sucursal->save()) {
+                        $sucursal_id = $sucursal->id;
+                        if( $request->hasFile('imagen')) {
+                            $sucursal_id = $request->id;
+                            $file = $request->file('imagen');
+                            //$extension = $file->getClientOriginalExtension();
+                            $extension = 'jpg';
+                            $fileName = $sucursal_id . '.' . $extension;
+                            $path = public_path('img/sucursales/');
+                            $request->file('imagen')->move($path, $fileName);
+                        }
                         return response()->json(['mensaje' => 'Cambios guardados correctamente', 'status' => 'ok'], 200);
                     } else {
                         return response()->json(['mensaje' => 'Error al intentar guardar los cambios', 'status' => 'error'], 400);
@@ -153,41 +171,7 @@ public function buscar($buscar)
         'telefono' => $request->get('telefono')
       ]);
 
-      $user->save();
-      return redirect('/index');
+      #$user->save();
+      #return redirect('/index');
     }
-   
-public function Image(Request $request)
-    {
-        if ($request->isMethod('get')){
-            $title = "Imagen Sucursal";
-            return view('sucursalImagen')
-                ->with('title', $title);
-        }
-        else {
-            $validator = Validator::make($request->all(),
-                [
-                    'file' => 'image',
-                ],
-                [
-                    'file.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg)'
-                ]);
-            if ($validator->fails())
-                return array(
-                    'fail' => true,
-                    'errors' => $validator->errors()
-                );
-            $extension = $request->file('file')->getClientOriginalExtension();
-            $dir = 'uploads/';
-            $filename = uniqid() . '_' . time() . '.' . $extension;
-            $request->file('file')->move($dir, $filename);
-            return $filename;
-        }
-    }
-
-    public function deleteImage($filename)
-    {
-        File::delete('uploads/' . $filename);
-    }
-  
 }

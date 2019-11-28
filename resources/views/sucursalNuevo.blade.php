@@ -1,7 +1,7 @@
 @extends('layout_principal')
 @section('content')  
     <h1>{{$title}}</h1>
-    <form id="SucursalForm" >
+    <form id="SucursalForm" method="POST">
   <div class="row">
     <div class="col">
       <label for="inputNombre">Nombre</label>
@@ -18,7 +18,7 @@
     <input type="text" 
     class="form-control" 
     id="forDireccion" 
-    placeholder="forDireccion" 
+    placeholder="Direccion" 
     name="direccion"
     value="{{isset($sucursal) ? $sucursal->direccion : ''}}">
     </div>
@@ -27,14 +27,23 @@
       <label for="inputTelefono">Telefono</label>
       <input type="text" 
       class="form-control" 
-      placeholder="forTelefono" 
+      placeholder="Telefono" 
       id="forTelefono" 
       name="telefono"
       value="{{isset($sucursal) ? $sucursal->telefono : ''}}">
     </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Imagen</label>
+          <div class="col-md-6">
+              @if(isset($sucursal) && file_exists(public_path('img/sucursales/'.$sucursal->id.'.jpg')))
+                  <img src="{{url('img/sucursales/'.$sucursal->id)}}.jpg" width="200px">
+              @endif
+              <input type="file" id="imagen" name="imagen" accept="image/x-png,image/gif,image/jpeg">
+          </div>
+    </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">{{$accion == 'nuevo' ? 'Alta de empleado' : 'Guardar cambios' }}</button>
+  <button type="submit" class="btn btn-primary">{{$accion == 'nuevo' ? 'Alta de sucursal' : 'Guardar cambios' }}</button>
 </form>
 
 
@@ -69,46 +78,57 @@
         });
 
         $("#SucursalForm").submit(function (event ) {
-            console.log('submit');
-            console.log('validate', $("#SucursalForm").validate());
-            event.preventDefault();
+           event.preventDefault();
 
-            var $form = $(this);
-            if(! $form.valid()) return false;
+            var form_data = new FormData();
+            form_data.append('imagen', $('#imagen')[0].files[0]);
+            //form_data.append('imagen', $('#imagen')[0]);
+            form_data.append('_token', '{{csrf_token()}}');
+            form_data.append('accion', '{{$accion}}');
+            form_data.append('id', '{{isset($sucursal) ? $sucursal->id : ''}}');
+            form_data.append('nombre',  $("#forNombre").val());
+            form_data.append('direccion',  $("#forDireccion").val());
+            form_data.append('telefono',  $("#forTelefono").val());
 
-                $.ajax({
-                    url: "{{ asset('sucursalGuardar')}}",
-                    method: 'POST',
-                    data: {
-                        nombre: $("#forNombre").val(),
-                        direccion: $("#forDireccion").val(),
-                        telefono: $("#forTelefono").val(),
-                      
-                        _token: "{{ csrf_token() }}",
-                        id:"{{isset($sucursal) ? $sucursal->id : ''}}",
-                        accion: "{{$accion}}"
-                    },
-                    dataType: 'json',
-                    beforeSend: function () {
+            var form = $('#SucursalForm');
 
-                    },
-                    success: function (response) {
-                        console.log("response", response);
-                        if (response.status == 'ok') {
-                            toastr["success"](response.mensaje);
+            console.log(form_data);
+            console.log(form);
+
+            if(! form.valid()) return false;
+
+            $.ajax({
+                url: "{{ asset('sucursalGuardar')}}",
+                method: 'POST',
+                cache: false,// no almacenar nada en memoria cache
+                contentType: false,
+                processData: false,
+                data: form_data,
+                dataType: 'json',
+                beforeSend: function () {
+
+                },
+                success: function (response) {
+                    if (response.status == 'ok') {
+                        toastr["success"](response.mensaje);
+                        if("{{$accion}}" == "nuevo"){
                             $("#SucursalForm").trigger("reset");
-                        } else {
-                            toastr["error"](response.mensaje);
+                        }else{
+                            window.setTimeout("location.href = \"{{asset('/sucursal/')}}\"", 3000)
                         }
-                    },
-                    error: function () {
-                        toastr["error"]("Error al realizar el registro");
-                    },
-                    complete: function () {
-
+                    } else {
+                        toastr["error"](response.mensaje);
                     }
+                },
+                error: function () {
+                    toastr["error"]("Error al realizar el registro");
+                },
+                complete: function () {
 
-                })
+                }
+
+            })
+
         });
     });
     </script>

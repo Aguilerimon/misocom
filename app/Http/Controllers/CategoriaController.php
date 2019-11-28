@@ -57,16 +57,6 @@ class CategoriaController extends Controller {
                  $categoria->nombre = $request->nombre;
 
                      if($categoria->save()){
-                      $categoria_id =$categoria->id;
-                      if($request->hasFile('imagen'))
-                      {
-                        $file = $request->file('imagen');
-                        $extension = $file->getClientOriginalExtension();
-                        $fileName = $categoria_id . '.' . $extension;
-                        $path = public_path('img/categorias/');
-                        $request->file('imagen')->move($path, $fileName);
-
-                      }
                         return response()->json(['mensaje' =>'Categoria agregada','status'=>'ok'],200);
                       
                      }else{
@@ -77,19 +67,8 @@ class CategoriaController extends Controller {
                    if($categoria =  Categoria::find($request->id)){
                     $categoria->nombre = $request->nombre;
                     if($categoria->save()){
-                      $categoria_id = $categoria->id;
-                      if($request->hasFile('imagen')){
-                         $categoria_id = $request->id;
-                            $file = $request->file('imagen');
-                            //$extension = $file->getClientOriginalExtension();
-                            $extension = 'jpg';
-                            $fileName = $categoria_id . '.' . $extension;
-                            $path = public_path('img/categorias/');
-                            $request->file('imagen')->move($path, $fileName);
-                      }
-                        return response()->json(['mensaje'=>'Cambios Guardados','status' => 'ok'],200);
-                      
-                      }else{
+                        return response()->json(['mensaje'=>'Cambios Guardados','status' => 'ok'],200);  
+                    }else{
                         return response()->json(['mensaje' =>'Error al guardar cambios','status' =>'error'],400);
                       }
                     }else{
@@ -99,8 +78,6 @@ class CategoriaController extends Controller {
             }catch(Exception $e){
             return response()->json(['mensaje' =>'Error al agregar la categoria'],403);
                }
-               
-        
     }
 
        

@@ -17,7 +17,6 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">#ID</th>
-            <th scope="col">Imagen</th>
             <th scope="col">Nombre</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
@@ -26,37 +25,21 @@
         </thead>
         <tbody>
         @foreach($categorias as $categoria)
-
             <tr id="renglon_{{$categoria->id}}">
                 <th scope="row">{{$categoria->id}}</th>
-                    <td>
-                        @if(file_exists(public_path('img/categorias/'.$categoria->id.'.jpg')))
-                        <img src="{{url('img/categorias/'.$categoria->id)}}.jpg" width="50px">
-                    @endif
-                    </td>
-
                 <td>{{$categoria->nombre}}</td>
+                
                 <td>
-                    <span class="d-inline-block" tabindex="0"          data-toggle="tooltip" title="Editar">
-                        <a href="categoriasEditar/{{$categoria->id}}">
-                              <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                          </a>
-                    </span>
-                </td>
-                <td>
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar">
-                        <button onclick="eliminarCategoria({{$categoria->id}})" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </span>
+                    <a href="categoriasEditar/{{$categoria->id}}">
+                        <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                    </a>
                 </td>
                 
-
+                <td>
+                    <button onclick="eliminarCategoria({{$categoria->id}})" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                </td>
             </tr>
-
-
-
         @endforeach
-
-
         </tbody>
     </table>
 

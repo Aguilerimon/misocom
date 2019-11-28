@@ -64,12 +64,12 @@ class ProveedoresController extends Controller {
                 }
             }else if($request->accion == 'editar'){
                 if($proveedor = Proveedor::find($request->id)){
-            $proveedor->nombre = $request->nombre;
-            $proveedor->direccion = $request->direccion;
-            $proveedor->ciudad = $request->ciudad;
-            $proveedor->telefono = $request->telefono;
-            $proveedor->fax = $request->fax;
-            $proveedor->correo = $request->correo;
+                    $proveedor->nombre = $request->nombre;
+                    $proveedor->direccion = $request->direccion;
+                    $proveedor->ciudad = $request->ciudad;
+                    $proveedor->telefono = $request->telefono;
+                    $proveedor->fax = $request->fax;
+                    $proveedor->correo = $request->correo;
                     if ($proveedor->save()) {
                         return response()->json(['mensaje' => 'Cambios guardados correctamente', 'status' => 'ok'], 200);
                     } else {
@@ -137,40 +137,4 @@ class ProveedoresController extends Controller {
           $pdf = PDF ::loadView('proveedoresPDF', compact('proveedores','title','numRegistros'));
           return $pdf->download('proveedores.pdf');
         }
-
-        public function Image(Request $request)
-    {
-        if ($request->isMethod('get')){
-            $title = "Imágen del proveedor";
-            return view('proveedoresImagen') 
-                ->with('title', $title);
-        }
-        else {
-            $validator = Validator::make($request->all(),
-                [
-                    'file' => 'image',
-                ],
-                [
-                    'file.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg)'
-                ]);
-            if ($validator->fails())
-                return array(
-                    'fail' => true,
-                    'errors' => $validator->errors()
-                );
-            $extension = $request->file('file')->getClientOriginalExtension();
-            $dir = 'uploads/';
-            $filename = uniqid() . '_' . time() . '.' . $extension;
-            $request->file('file')->move($dir, $filename);
-            return $filename;
-        }
-    }
-
-    public function deleteImage($filename)
-    {
-        File::delete('uploads/' . $filename);
-    }
-
-
-
 }

@@ -1,15 +1,20 @@
 @extends('layout_principal')
 @section('content')
-    <h1>{{$title}}</h1>
-    <div class="form-group">
-        <div class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Ingresar búsqueda">
-            <span>
+    
+    <div class="row mt-5">
+            <div class="col-8">
+                <h1>{{$title}}</h1>
+            </div>
+            <div class="col-4">
+                <div class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Ingresar búsqueda">
+                <span>
                 <button class="btn btn-outline-success my-2 my-sm-0" onclick="buscar()">Buscar</button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" onclick="imprimir('{{isset($buscar) ? $buscar : null }}')" type="button"><i class="fas fa-file-pdf"></i></button>   
-           </span> 
+                <button class="btn btn-outline-primary my-2 my-sm-0" onclick="imprimir('{{isset($buscar) ? $buscar : null }}')" type="button"><i class="fas fa-file-pdf"></i></button></span> 
+                </div>
+            </div>
         </div>
-    </div>
+        
     <table class="table">
         <thead class="thead-dark">
         <tr>

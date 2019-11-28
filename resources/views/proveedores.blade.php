@@ -1,22 +1,22 @@
 @extends('layout_principal') 
 @section('content') 
 <div class="row mt-5"> 
-   <div class="col-8">
-            <h1>{{$title}}</h1>
-        </div>
+    <div class="col-8">
+      <h1>{{$title}}</h1>
+    </div>
     <div class="col-4">
-    <div class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Buscar" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" onclick="buscar()"><i class="fas fa-search"></i></button>
-    <button class="btn btn-outline-primary my-2 my-sm-0" onclick="imprimir('{{isset($buscar) ? $buscar : null }}')" type="button"><i class="fas fa-file-pdf"></i></button>
-  </div>
-</div>
+      <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="buscar" id="buscar">
+        <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" onclick="buscar()">Buscar</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" onclick="imprimir('{{isset($buscar) ? $buscar : null }}')" type="button"><i class="fas fa-file-pdf"></i></button>
+      </div>
+    </div>
 </div>
    <div class="table-responsive">
      <table class="table">
   <thead class="thead-dark">
     <tr style="text-align: center;">
-      <th scope="col">ID</th>
+      <th scope="col">#ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Dirección</th>
       <th scope="col">Ciudad</th>
@@ -25,52 +25,48 @@
       <th scope="col">Correo</th>
       <th scope="col">Editar</th>
       <th scope="col">Eliminar</th>
-      <th scope="col">Imagen</th>
     </tr>
   </thead>
   <tbody>
     @foreach($proveedores as $proveedor)
     <tr id="renglon_{{$proveedor->id}}"> 
-      <th scope="row">{{$proveedor->id}}</th>
-      <td>
+                  <th scope="row">{{$proveedor->id}}</th>
+                  
+                  <td>
                     {{$proveedor->nombre}}
-                   </td>
-                   <td>
-                       {{$proveedor->direccion}}
-                   </td>
-                   <td>
+                  </td>
+                  
+                  <td>
+                    {{$proveedor->direccion}}
+                  </td>
+                  
+                  <td>
                        {{$proveedor->ciudad}}
-                   </td>
-                   <td>
+                  </td>
+                  
+                  <td>
                        {{$proveedor->telefono}}
-                   </td>
-                   <td>
+                  </td>
+                  
+                  <td>
                        {{$proveedor->fax}}
-                   </td>
-                   <td>
+                  </td>
+                  
+                  <td>
                        {{$proveedor->correo}}
-                   </td>
-                   <td>
-                    <a href="proveedoresEditar/{{$proveedor->id}}"><button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button></a></td>
-                   <td><button onclick="eliminarProveedor({{$proveedor->id}})" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                   <td>
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Imagen">
-                        <a href="proveedoresImagen/">
-                            <button type="button" class="btn btn-warning"><i class="fas fa-upload"></i></button>
-                        </a>
-                        <a href="proveedores-remove-image/">
-                            <button type="button" class="btn btn-warning"><i class="fas fa-trash-alt"></i></button>
-                        </a>
-                    </span>
-                </td>
-
+                  </td>
+                  
+                  <td>
+                    <a href="proveedoresEditar/{{$proveedor->id}}"><button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
+                  </td>
+                  
+                  <td><button onclick="eliminarProveedor({{$proveedor->id}})" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </td>
     </tr>
   </tbody>
  
    @endforeach
 </table>
-
-
    </div>   
 
 

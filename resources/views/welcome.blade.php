@@ -90,7 +90,7 @@
                     <a href="{{asset('empleados/')}}">Empleados</a>
                     <a href="{{asset('clientes/')}}">Clientes</a>
                     <a href="{{asset('categorias/')}}">Categorias</a>
-                    <a href="sucursal/">Sucursal</a>
+                    <a href="{{asset('sucursal/')}}">Sucursal</a>
                 </div>
             </div>
         </div>

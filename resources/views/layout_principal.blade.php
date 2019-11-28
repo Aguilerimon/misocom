@@ -99,7 +99,6 @@
                 <div class="dropdown-menu" aria-labelledby="apareceMenu">
                     <a class="dropdown-item" href="{{asset('sucursal/')}}">Listar</a>
                     <a class="dropdown-item" href="{{asset('sucursalNuevo')}}">Nuevo</a>
-
                 </div>
             </li>
         </ul>
