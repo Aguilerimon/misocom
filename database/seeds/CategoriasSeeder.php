@@ -14,22 +14,22 @@ class CategoriasSeeder extends Seeder
     {
         DB::table($this->table)->delete();
         DB::table($this->table)->insert([
-            'nombre' => 'Abarrotes',
+            'nombre' => 'Lacteos',
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);
         DB::table($this->table)->insert([
-            'nombre' => 'Ferreterias',
+            'nombre' => 'Botana',
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);
         DB::table($this->table)->insert([
-            'nombre' => 'Vinos y Licores',
+            'nombre' => 'Bebidas',
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);
         DB::table($this->table)->insert([
-            'nombre' => 'Hogar',
+            'nombre' => 'Postre',
             'created_at' => '2019-04-16',
             'updated_at' => '2019-04-16',
         ]);
