@@ -10,7 +10,6 @@
                     <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Ingresar búsqueda">
                 <span>
                 <button class="btn btn-outline-success my-2 my-sm-0" onclick="buscar()">Buscar</button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" onclick="imprimir('{{isset($buscar) ? $buscar : null }}')" type="button"><i class="fas fa-file-pdf"></i></button></span> 
                 </div>
             </div>
 </div>

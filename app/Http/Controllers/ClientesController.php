@@ -21,8 +21,6 @@ class ClientesController extends Controller{
     public function buscar($buscar){
        $clientes = Cliente::where ('nombres','like', $buscar.'%')
         ->orWhere('id','like', $buscar)
-        ->orWhere ('apaterno', 'like', $buscar.'%')
-        ->orWhere ('amaterno', 'like', $buscar.'%')
         ->orWhere ('nombres', 'like', $buscar.'%')
         ->get();
        $title = "Lista de Clientes | ".$buscar;
@@ -40,8 +38,6 @@ class ClientesController extends Controller{
           }else {
             $clientes = Cliente::where('nombres','like',$buscar. '%')
             ->orWhere('id','like', $buscar)
-            ->orWhere ('apaterno', 'like', $buscar.'%')
-            ->orWhere ('amaterno', 'like', $buscar.'%')
             ->orWhere ('nombres', 'like', $buscar.'%')
             ->get();
           }
@@ -85,11 +81,9 @@ class ClientesController extends Controller{
             if($request->accion == 'nuevo'){
             $cliente = new Cliente();
             $cliente->nombres = $request->nombres;
-            $cliente->apaterno = $request->apaterno;
-            $cliente->amaterno = $request->amaterno;
             $cliente->direccion = $request->direccion;
-            $cliente->telefono = $request->telefono;
             $cliente->correo = $request->correo;
+            $cliente->contrasena = $request->contrasena;
                 if($cliente->save()){
                     $cliente_id = $cliente->id;
                     if( $request->hasFile('imagen')) {
@@ -108,11 +102,9 @@ class ClientesController extends Controller{
         else if($request->accion == 'editar'){
             if($cliente = Cliente::find($request->id)){
                 $cliente->nombres = $request->nombres;
-                $cliente->apaterno = $request->apaterno;
-                $cliente->amaterno = $request->amaterno;
                 $cliente->direccion = $request->direccion;
-                $cliente->telefono = $request->telefono;
                 $cliente->correo = $request->correo;
+                $cliente->contrasena = $request->contrasena;
                      if ($cliente->save()) {
                         $cliente_id = $cliente->id;
                         if( $request->hasFile('imagen')) {

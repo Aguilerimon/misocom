@@ -10,7 +10,6 @@
                     <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Ingresar búsqueda">
                 <span>
                 <button class="btn btn-outline-success my-2 my-sm-0" onclick="buscar()">Buscar</button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" onclick="imprimir('{{isset($buscar) ? $buscar : null }}')" type="button"><i class="fas fa-file-pdf"></i></button></span> 
                 </div>
             </div>
         </div>
@@ -21,11 +20,9 @@
             <th scope="col">#ID</th>
             <th scope="col">Imagen</th>
             <th scope="col">Nombre(s)</th>
-            <th scope="col">Apaterno</th>
-            <th scope="col">Amaterno</th>
             <th scope="col">Direccion</th>
-            <th scope="col">Telefono</th>
             <th scope="col">Correo</th>
+            <th scope="col">Contraseña</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
@@ -40,11 +37,9 @@
                     @endif
                 </td>
                 <td>{{$cliente->nombres}}</td>
-                <td>{{$cliente->apaterno}}</td>
-                <td>{{$cliente->amaterno}}</td>
                 <td>{{$cliente->direccion}}</td>
-                <td>{{$cliente->telefono}}</td>
                 <td>{{$cliente->correo}}</td>
+                <td>{{$cliente->contrasena}}</td>
                 <td>
                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar">
                         <a href="clientesEditar/{{$cliente->id}}">
